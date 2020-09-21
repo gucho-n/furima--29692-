@@ -24,15 +24,14 @@
 | Column        | Type   | Options                      |
 | --------------| ------ | -----------------------------|
 | name          | string |                              | 
-| origin_id     | integer| null: false foreign_key: true|
-| category_id   | integer| null: false foreign_key: true|
-| detail        | text   |                              |
-| condition_id  | integer| null: false foreign_key: true|
-| estimate_of_deliver_id| integer | null: false foreign_key: true|
+| origin_id     | integer|                              |
+| category_id   | integer|                              |
+| condition_id  | integer|                              |
+| estimate_of_deliver_id|integer|                       |
 | description   | text   |                              |
 | price         | integer|                              |
-| user_id       | integer| null: false foreign_key: true|
-| address_id    | integer| null: false foreign_key: true|
+| user          | reference| null: false foreign_key: true|
+| address       | reference| null: false foreign_key: true|
 
 イメージはactive_storage
 
@@ -55,11 +54,12 @@
 | Column          | Type       |Options                        
 | -------         | ---------- |-------------|
 | postcode        | integer    | null: false |
-| phonenumber     | integer    | null: false |
+| phonenumber     | string    | null: false |
 | city            | string    | null: false  |
 | block           | integer    | null: false |
 | building        | string     | null: true  |
-| prefecture_id   | integer     | null: true  | null: false,foreign_key: true|
+| prefecture_id   | integer     |            |
+| item_purchase | references | null: false, foreign_key: true|
 
 ### Association
 
