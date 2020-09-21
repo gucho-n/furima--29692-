@@ -11,8 +11,8 @@
 
 ### Association
 
-- has_many :users_items
-- has_many :items though users_items
+- has_many :item_purchases
+- has_many :items though item_purchases
 
 ## items テーブル
 
@@ -32,10 +32,10 @@
 
 
 ### Association
-- belongs_to :items 
-- has_many :users though :users_items
+- belongs_to :item_purchases
+- has_many :users though :item_purchases
 
-## users_items テーブル
+## item_purchases テーブル
 | Column      | Type   | Options     |
 | --------    | ------ | ----------- |
 | user        | reference | null: false,foreign_key: true |
@@ -43,6 +43,7 @@
 
 - belongs_to  :users
 - belongs_to  :items
+  has_one :address
 
 ## address テーブル
 
@@ -59,7 +60,9 @@
 
 ### Association
 
-  has_many :items
+  has_one :item_purchases
+
+
 
 
  
