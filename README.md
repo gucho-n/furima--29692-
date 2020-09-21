@@ -1,14 +1,5 @@
-# README
-controller
-items
-Search
-Sell
-user 
-* ...
-
-# テーブル設計
-
 ## users テーブル
+
 
 | Column        | Type   | Options     |
 | --------      | ------ | ----------- |
@@ -22,7 +13,7 @@ user
 
 - has_many :order
 - has_many :user_id
-- has_many :items though user_id
+- has_many :items though items
 
 #ユーザー本体の個人情報で、ログインに必要な情報と初期情報を記入
 #ユーザーは複数のオーダーを頼める
@@ -43,29 +34,30 @@ user
 | order_id       | string | null: false |
 
 ### Association
+#itemsとの関係は多対多か１対多か迷いましたが、たくさんのユーザーが同製品に興味を持つことを考え多多にしました
+- has_many :orders
+- has_many :users_items 
+- has_many :users though :users_items
+
+## users_items テーブル
+#中間テーブルとして扱っております
+| Column      | Type   | Options     |
+| --------    | ------ | ----------- |
+| users_id    | reference | null: false,foreign_key: true |
+| items_id    | reference | null: false,foreign_key: true |
 
 - has_many  :users, through: user_items
 - has_many  :users_items
 - has_one   :price
   belongs_to:order
 
-## users_Items テーブル
-
-| Column   | Type       | Options                        |
-| ------   | ---------- | ------------------------------ |
-| users_id | Integer    | null: false, foreign_key: true |
-| items_id | Integer    | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :items
-- belongs_to :users
 
 ## order テーブル
 
 | Column     | Type       |Options                        
 | -------    | ---------- |-------------|
-| order_date | date       | null: false |                | order_item | string     | null: false |
+| order_date | date       | null: false |          
+| order_item | string     | null: false |
 | user_id    | integer    | null: false |
 | deliver_id | integer    | null: false |
 
@@ -80,7 +72,8 @@ user
 
 | Column        | Type     |option                       
 | -------       | ---------|-------------|      
-| shipping_charge | integer| null: false |                | shipping_date   | date   | null: false |
+| shipping_charge | integer| null: false |             
+| shipping_date   | date   | null: false |
 | deliver_way     | string | null: false |
 | delivery_address| string | null: false |
 
@@ -107,9 +100,9 @@ belongs_to :items
 
 | Column        | Type     |option                       
 | -------       | ---------|-------------|      
-| price         | integer  | null: false |                | commission    | string   | null: false |
+| price         | integer  | null: false |              
+| commission    | string   | null: false |
 | benefit       | string   | null: false |
 | items_id      | integer  | null: false |
 
  has_one :items
-
