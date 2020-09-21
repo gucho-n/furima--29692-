@@ -10,51 +10,106 @@ user
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
+| Column        | Type   | Options     |
+| --------      | ------ | ----------- |
+| name          | string | null: false |
+| phonenumber   | integer| null: false |
+| emailaddress  | string | null: false |
+| postcode      | integer| null: false |
+| address       | string | null: false |
 
 ### Association
 
-- has_many :
-- has_many :
-- has_many :
+- has_many :order
+- has_many :user_id
+- has_many :items though user_id
+
+#ユーザー本体の個人情報で、ログインに必要な情報と初期情報を記入
+#ユーザーは複数のオーダーを頼める
+#ユーザーがいくつも製品を出品できる（出品した製品と購入した製品をどう生合成つけるか悩みました）
 
 ## items テーブル
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
+| Column        | Type   | Options     |
+| --------      | ------ | ----------- |
+| name          | string | null: false |
+| origin        | string | null: false |
+| category      | string | null: false |
+| detail        | string | null: false |
+| condition     | string | null: false |
+| estimate_of_deliver | Date | null: false |
+| image         | string | null: false |
+| description   | string | null: false |
+| order_id       | string | null: false |
 
 ### Association
 
-- has_many :room_users
-- has_many :users, through: room_users
-- has_many :messages
+- has_many  :users, through: user_items
+- has_many  :users_items
+- has_one   :price
+  belongs_to:order
 
-## room_users テーブル
+## users_Items テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| room   | references | null: false, foreign_key: true |
+| Column   | Type       | Options                        |
+| ------   | ---------- | ------------------------------ |
+| users_id | Integer    | null: false, foreign_key: true |
+| items_id | Integer    | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :room
+- belongs_to :items
+- belongs_to :users
+
+## order テーブル
+
+| Column     | Type       |Options                        
+| -------    | ---------- |-------------|
+| order_date | date       | null: false |                | order_item | string     | null: false |
+| user_id    | integer    | null: false |
+| deliver_id | integer    | null: false |
+
+### Association
+
 - belongs_to :user
+- belongs_to :deliver
+  has_many :items
 
-## messages テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     |                                |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
+  ## deliver テーブル
 
-### Association
+| Column        | Type     |option                       
+| -------       | ---------|-------------|      
+| shipping_charge | integer| null: false |                | shipping_date   | date   | null: false |
+| deliver_way     | string | null: false |
+| delivery_address| string | null: false |
 
-- belongs_to :room
-- belongs_to :user
+ has_many :order
+＃オーダーを確定した後に配送情報を記入するので、別テーブル
+ ## message テーブル  
+| Column        | Type   | Options     |
+| --------      | ------ | ----------- |
+| text          | string | null: false |
+| image         | string | null: false |
+| created_at    | date   | null: false |
+| updated_at    | date   | null: false |
+| detail        | string | null: false |
+| condition     | string | null: false |
+| image         | string | null: false |
+| estimate_of_deliver    | date | null: false |
+| items_id       | integer | null: false |
+
+belongs_to :items
+
+#itemsにするか、Userにするか、アソシエーションを悩みました
+
+ ## price テーブル
+
+| Column        | Type     |option                       
+| -------       | ---------|-------------|      
+| price         | integer  | null: false |                | commission    | string   | null: false |
+| benefit       | string   | null: false |
+| items_id      | integer  | null: false |
+
+ has_one :items
+
