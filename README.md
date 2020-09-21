@@ -7,27 +7,28 @@
 | firstname     | string | null: false |
 | surname_kana  | string | null: false |
 | firstname_kana| string | null: false |
-| name          | string | null: false |
 | email         | string | null: false |
 | nickname      | string | null: false |
 | password      | string | null: false |
+| birthday      | date   | null: false |
+
 
 
 ### Association
 
 - has_many :item_purchases
-- has_many :items though item_purchases
+- has_many :items 
 
 ## items テーブル
 
 | Column        | Type   | Options                      |
 | --------------| ------ | -----------------------------|
 | name          | string |                              | 
-| origin        | integer|                              |
-| category      | integer|                              |
+| origin_id     | integer| null: false foreign_key: true|
+| category_id   | integer| null: false foreign_key: true|
 | detail        | text   |                              |
-| condition     | integer|                              |
-| estimate_of_deliver | integer |                              |
+| condition_id  | integer| null: false foreign_key: true|
+| estimate_of_deliver_id| integer | null: false foreign_key: true|
 | description   | text   |                              |
 | price         | integer|                              |
 | user_id       | integer| null: false foreign_key: true|
@@ -37,7 +38,7 @@
 
 ### Association
 - belongs_to :item_purchase
-- has_many :users though :item_purchases
+- has_many :users 
 
 ## item_purchases テーブル
 | Column      | Type   | Options     |
@@ -53,18 +54,16 @@
 
 | Column          | Type       |Options                        
 | -------         | ---------- |-------------|
-| shipping_charge | integer    | null: false |          
-| shipping_date   | date       | null: false |
-| shipping_way    | string     | null: false |
 | postcode        | integer    | null: false |
 | phonenumber     | integer    | null: false |
-| city            | string    | null: false |
+| city            | string    | null: false  |
 | block           | integer    | null: false |
-| building        | string     | null: false |
+| building        | string     | null: true  |
+| prefecture_id   | integer     | null: true  | null: false,foreign_key: true|
 
 ### Association
 
-  has_one :item_purchase
+  belongs_to :item_purchase
 
 
 
