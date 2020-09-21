@@ -1,13 +1,17 @@
-## users テーブル 9.21 20:00
+## users テーブル 9.21 21:20
 
 
 | Column        | Type   | Options     |
 | --------      | ------ | ----------- |
+| surname       | string | null: false |
+| firstname     | string | null: false |
+| surname_kana  | string | null: false |
+| firstname_kana| string | null: false |
 | name          | string | null: false |
-| phonenumber   | integer| null: false |
 | email         | string | null: false |
-| nickname      | integer| null: false |
+| nickname      | string | null: false |
 | password      | string | null: false |
+
 
 ### Association
 
@@ -18,21 +22,21 @@
 
 | Column        | Type   | Options                      |
 | --------------| ------ | -----------------------------|
-| name          | string | null: false,foreign_key: true| 
-| origin        | string | null: false foreign_key: true|
-| category      | string | null: false foreign_key: true|
-| detail        | text   | null: false foreign_key: true|
-| condition     | string | null: false foreign_key: true|
-| estimate_of_deliver | Date | null: false null: false foreign_key: true|
-| image         | string | null: false foreign_key: true|
-| description   | string | null: false foreign_key: true|
-| price         | integer| null: false foreign_key: true|
+| name          | string |                              | 
+| origin        | integer|                              |
+| category      | integer|                              |
+| detail        | text   |                              |
+| condition     | integer|                              |
+| estimate_of_deliver | integer |                              |
+| description   | text   |                              |
+| price         | integer|                              |
 | user_id       | integer| null: false foreign_key: true|
 | address_id    | integer| null: false foreign_key: true|
 
+イメージはactive_storage
 
 ### Association
-- belongs_to :item_purchases
+- belongs_to :item_purchase
 - has_many :users though :item_purchases
 
 ## item_purchases テーブル
@@ -41,8 +45,8 @@
 | user        | reference | null: false,foreign_key: true |
 | item        | reference | null: false,foreign_key: true |
 
-- belongs_to  :users
-- belongs_to  :items
+- belongs_to  :user
+- belongs_to  :item
   has_one :address
 
 ## address テーブル
@@ -60,7 +64,7 @@
 
 ### Association
 
-  has_one :item_purchases
+  has_one :item_purchase
 
 
 
