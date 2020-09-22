@@ -16,8 +16,8 @@
 
 ### Association
 
-- belongs_to :item
-- has_one : item_purchase 
+- has_many :items
+- has_many :item_purchases 
 
 ## items テーブル
 
@@ -39,7 +39,7 @@ belongs_to_active_hash :genre
 ### Association
   belongs_to :user
 - has_one :item_purchase
-- has_many :users 
+- 
 
 ## item_purchases テーブル
 | Column      | Type   | Options     |
