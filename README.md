@@ -1,61 +1,77 @@
+## users テーブル 9.22 11:20
 
-## users テーブル
 
+| Column        | Type   | Options     |
+| --------      | ------ | ----------- |
+| surname       | string | null: false |
+| firstname     | string | null: false |
+| surname_kana  | string | null: false |
+| firstname_kana| string | null: false |
+| email         | string | null: false |
+| nickname      | string | null: false |
+| password      | string | null: false |
+| birthday      | date   | null: false |
+
+
+
+### Association
+
+- has_many :items
+- has_many :item_purchases 
+
+## items テーブル
+
+| Column        | Type   | Options                      |
+| --------------| ------ | -----------------------------|
+|shipping_charge_id|integer |null:false
+| name          | string |null:false                    | 
+| origin_id     | integer|null:false                    |
+| category_id   | integer|null:false                    |
+| condition_id  | integer|null:false                    |
+| estimate_of_deliver_id|integer|null:false             |
+| description   | text   |null:false                    |
+| price         | integer|null:false                    |
+| user          | references| null: false foreign_key: true|
+
+
+belongs_to_active_hash :shipping_charge
+belongs_to_active_hash :origin
+belongs_to_active_hash :category
+belongs_to_active_hash :condition
+belongs_to_active_hash :estimate_of_deliver
+
+### Association
+  belongs_to :user
+- has_one :item_purchase
+- 
+
+## item_purchases テーブル
 | Column      | Type   | Options     |
 | --------    | ------ | ----------- |
-| name        | string | null: false |
-| phonenumber | string | null: false |
-| emailadress | string | null: false |
-| postcode    | string | null: false |
-| address     | string | null: false |
+| user        | references | null: false,foreign_key: true |
+| item        | references | null: false,foreign_key: true |
 
+- belongs_to  :user
+- belongs_to  :item
+  has_one :address
 
-### Association
-#親テーブルとして扱うので外部キーは指揮ません
-#itemsとの関係は多対多か１対多か迷いましたが、たくさんのユーザーが同製品に興味を持つことを考え多多にしました
-- has_many :orders
-- has_many :users_items 
-- has_many :items though :users_items
+## addresses テーブル
 
-## users_items テーブル
-#中間テーブルとして扱っております
-| Column      | Type   | Options     |
-| --------    | ------ | ----------- |
-| users_id    | reference | null: false,foreign_key: true |
-| items_id    | reference | null: false,foreign_key: true |
+| Column          | Type       |Options                        
+| -------         | ---------- |------------|
+| postcode        | string    | null: false |
+| phonenumber     | string    | null: false |
+| city            | string    | null: false |
+| block           | string    | null: false|
+| building        | string     | null: true |
+| prefecture_id   | integer     |null:false |
+| item_purchase | references | null: false, foreign_key: true|
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+  belongs_to :item_purchase
+  belongs_to_active_hash :prefecture
 
-## orders テーブル
-＃userと１体多の関係なので外部キーも差し込んでおります
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| costomer_code | string     | null: false, foreign_key: true |
-| order_date    | date       | null: false, foreign_key: true |
-| shipping_date | date       | null: false, foreign_key: true |
-| deliver_way   | string     | null: false, foreign_key: true |
-| delivery_address| string   | null: false, foreign_key: true |
-| payment       | string     | null: false, foreign_key: true |
 
-### Association
 
-- belongs_to :user
-
-# messages テーブル
-＃itemsと１体多の関係なので外部キーも差し込んでおります
-＃imageはimage型でしょうか
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| text   | string     | null: false, foreign_key: true |
-| image  | image      | null: false, foreign_key: true |
-| created_at | date   | null: false, foreign_key: true |
-| updated_at | date   | null: false, foreign_key: true |
-| detail     | string | null: false, foreign_key: true |
-| condition  | string | null: false, foreign_key: true |
-| estimate_of_deliver | string| null: false, foreign_key
-### Association
-
-- belongs_to :items
+ 
