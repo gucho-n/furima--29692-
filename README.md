@@ -41,8 +41,8 @@ belongs_to_active_hash :condition
 belongs_to_active_hash :estimate_of_deliver
 
 ### Association
-  belongs_to :users
-- has_one :item_purchases
+  belongs_to :user
+- has_one :item_purchase
 - 
 
 ## item_purchases テーブル
@@ -51,8 +51,8 @@ belongs_to_active_hash :estimate_of_deliver
 | user        | references | null: false,foreign_key: true |
 | item        | references | null: false,foreign_key: true |
 
-- belongs_to  :users
-- belongs_to  :items
+- belongs_to  :user
+- belongs_to  :item
   has_one :addresses
 
 ## address テーブル
@@ -69,7 +69,7 @@ belongs_to_active_hash :estimate_of_deliver
 
 ### Association
 
-  belongs_to :item_purchases
+  belongs_to :item_purchase
   belongs_to_active_hash :prefecture
 
 
