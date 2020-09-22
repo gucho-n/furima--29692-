@@ -32,12 +32,12 @@
 | description   | text   |null:false                    |
 | price         | integer|null:false                    |
 | user          | reference| null: false foreign_key: true|
-| address       | reference| null: false foreign_key: true|
+
 
 belongs_to_active_hash :genre
 
 ### Association
-- belongs_to :item_purchase
+- has_one :item_purchase
 - has_many :users 
 
 ## item_purchases テーブル
@@ -57,7 +57,7 @@ belongs_to_active_hash :genre
 | postcode        | string    | null: false |
 | phonenumber     | string    | null: false |
 | city            | string    | null: false |
-| block           | integer    | null: false|
+| block           | string    | null: false|
 | building        | string     | null: true |
 | prefecture_id   | integer     |null:false |
 | item_purchase | references | null: false, foreign_key: true|
