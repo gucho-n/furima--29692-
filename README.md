@@ -31,10 +31,14 @@
 | estimate_of_deliver_id|integer|null:false             |
 | description   | text   |null:false                    |
 | price         | integer|null:false                    |
-| user          | reference| null: false foreign_key: true|
+| user          | references| null: false foreign_key: true|
 
 
-belongs_to_active_hash :genre
+belongs_to_active_hash :shipping_charge
+belongs_to_active_hash :origin
+belongs_to_active_hash :category
+belongs_to_active_hash :condition
+belongs_to_active_hash :estimate_of_deliver
 
 ### Association
   belongs_to :user
@@ -44,8 +48,8 @@ belongs_to_active_hash :genre
 ## item_purchases テーブル
 | Column      | Type   | Options     |
 | --------    | ------ | ----------- |
-| user        | reference | null: false,foreign_key: true |
-| item        | reference | null: false,foreign_key: true |
+| user        | references | null: false,foreign_key: true |
+| item        | references | null: false,foreign_key: true |
 
 - belongs_to  :user
 - belongs_to  :item
@@ -66,7 +70,7 @@ belongs_to_active_hash :genre
 ### Association
 
   belongs_to :item_purchase
-  belongs_to_active_hash :genre
+  belongs_to_active_hash :prefecture
 
 
 
