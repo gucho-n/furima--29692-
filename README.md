@@ -34,7 +34,7 @@
 | user          | reference| null: false foreign_key: true|
 | address       | reference| null: false foreign_key: true|
 
-イメージはactive_storage
+belongs_to_active_hash :genre
 
 ### Association
 - belongs_to :item_purchase
@@ -65,7 +65,7 @@
 ### Association
 
   belongs_to :item_purchase
-
+  belongs_to_active_hash :genre
 
 
 
