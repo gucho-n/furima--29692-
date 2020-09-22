@@ -1,4 +1,4 @@
-## users テーブル 9.21 21:20
+## users テーブル 9.22 11:20
 
 
 | Column        | Type   | Options     |
@@ -23,13 +23,13 @@
 
 | Column        | Type   | Options                      |
 | --------------| ------ | -----------------------------|
-| name          | string |                              | 
-| origin_id     | integer|                              |
-| category_id   | integer|                              |
-| condition_id  | integer|                              |
-| estimate_of_deliver_id|integer|                       |
-| description   | text   |                              |
-| price         | integer|                              |
+| name          | string |null:false                    | 
+| origin_id     | integer|null:false                    |
+| category_id   | integer|null:false                    |
+| condition_id  | integer|null:false                    |
+| estimate_of_deliver_id|integer|null:false             |
+| description   | text   |null:false                    |
+| price         | integer|null:false                    |
 | user          | reference| null: false foreign_key: true|
 | address       | reference| null: false foreign_key: true|
 
@@ -52,13 +52,13 @@
 ## address テーブル
 
 | Column          | Type       |Options                        
-| -------         | ---------- |-------------|
-| postcode        | integer    | null: false |
+| -------         | ---------- |------------|
+| postcode        | string    | null: false |
 | phonenumber     | string    | null: false |
-| city            | string    | null: false  |
-| block           | integer    | null: false |
-| building        | string     | null: true  |
-| prefecture_id   | integer     |            |
+| city            | string    | null: false |
+| block           | integer    | null: false|
+| building        | string     | null: true |
+| prefecture_id   | integer     |null:false |
 | item_purchase | references | null: false, foreign_key: true|
 
 ### Association
