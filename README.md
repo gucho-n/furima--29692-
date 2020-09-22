@@ -53,9 +53,9 @@ belongs_to_active_hash :estimate_of_deliver
 
 - belongs_to  :user
 - belongs_to  :item
-  has_one :address
+  has_one :addresses
 
-## address テーブル
+## addresses テーブル
 
 | Column          | Type       |Options                        
 | -------         | ---------- |------------|
