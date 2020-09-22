@@ -23,7 +23,7 @@
 
 | Column        | Type   | Options                      |
 | --------------| ------ | -----------------------------|
-|shipping_charge|string  |null:false
+|shipping_charge_id|integer |null:false
 | name          | string |null:false                    | 
 | origin_id     | integer|null:false                    |
 | category_id   | integer|null:false                    |
