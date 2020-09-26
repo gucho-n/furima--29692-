@@ -3,12 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :nickname, presence: true
-  validates :birthday, presence: true
-  validates :surname, presence: true
-  validates :firstname, presence: true
-  validates :surname_kana, presence: true
-  validates :firstname_kana, presence: true
+  validates :nickname, :birthday, :surname, :firstname, :firstname_kana,presence: true
+  
+  
   # emailとpasswordについてはデフォルトで「存在しないと保存できない」というバリデーションが用意されている
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   # VALID_PASSWORD_REGEXは特にこの名前でなくても問題ない
