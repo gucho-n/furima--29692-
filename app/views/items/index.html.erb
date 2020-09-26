@@ -181,10 +181,16 @@
   </div>
   <%# /商品一覧 %>
 </div>
+ <% if user_signed_in? %>
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
-  <a href="#">
+  <a href="/items/new">
     <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   </a>
 </div>
+<% end %>
 <%= render "shared/footer" %> %>
+
+<%# 
+学習の自分メモ
+<a href="/items/new">ログインしていないと"/items/new"のプレフィックスが使えなかった。。 %>
