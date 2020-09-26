@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users 
+  
+
   root to: 'items#index'
-  get 'items', to: 'items#index'
+  
+  
 
 end
+# 勉強用のためのコメントアウト
+# デバイスをインストールしていればresourcesいらないと思ったんだけどなぁ。どこまでができおう範囲内？
+# →基本的にデバイスに関してはルーティング、コントローラーに関してはノータッチでOK
