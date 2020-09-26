@@ -80,18 +80,43 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
-      it 'firstname_kana、surname＿kanaはカタカナでなければ登録できない' do
-        @user.firstname_kana = '漢字'
+      it 'firstnameは空白だと登録できない' do
+        @user.firstname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Firstname kana is invalid")
-        @user.surname_kana = '漢字'
+        expect(@user.errors.full_messages).to include("Firstname can't be blank", "Firstname is invalid")
+      end
+      it 'surnameは空白だと登録できない' do
+        @user.surname = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname can't be blank", "Surname is invalid")
+      end
+
+      it 'firstname_kanaは空白だと登録できない' do
+        @user.firstname_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Firstname kana can't be blank", "Firstname kana is invalid")
+        
+      
+      end
+      it 'surname_kanaは空白だと登録できない' do
+        
+        @user.surname_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Surname kana is invalid")
+      
+      end
+      it '生年月日が空だと登録できない' do
+        @user.birthday = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
+      
       end
     end
   end
 end
 
+
+# 勉強用のためのコメントアウト
 # メモ用、単体テストコードで最低限必要なもの
 # 1.gemfileの記述
 # 2.specのインストール

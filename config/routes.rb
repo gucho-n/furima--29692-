@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users 
-  # デバイスをインストールしていればresourcesいらないと思ったんだけどなぁ。どこまでができおう範囲内？
+  
 
   root to: 'items#index'
   
   
 
 end
+# 勉強用のためのコメントアウト
+# デバイスをインストールしていればresourcesいらないと思ったんだけどなぁ。どこまでができおう範囲内？
+# →基本的にデバイスに関してはルーティング、コントローラーに関してはノータッチでOK

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :nickname, :birthday, :surname, :firstname, :firstname_kana,presence: true
+  validates :nickname, :birthday, :surname, :surname_kana, :firstname, :firstname_kana,presence: true
   
   
   # emailとpasswordについてはデフォルトで「存在しないと保存できない」というバリデーションが用意されている
