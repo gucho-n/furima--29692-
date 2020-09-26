@@ -66,3 +66,10 @@ gem 'faker'
 gem 'active_hash'
 # ↑ActiveHashの導入
 
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+# ↑Activestrage(画像の保存に使えるgem)
+# rails active_storage:install
+# ↓
+# rails db:migrate
+
