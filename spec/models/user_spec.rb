@@ -21,7 +21,6 @@ describe User do
       it 'passwordが6文字以上であれば登録できる' do
         @user.password = '00000a'
         @user.password_confirmation = '00000a'
-        # @user.password_confirmation =  /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
         expect(@user).to be_valid
       end
     end
@@ -32,12 +31,7 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      # そもそもバリデーションしてるからいらない
-      # it "nicknameが7文字以上であれば登録できない" do
-      #   @user.nickname = "aaaaaaa"
-      #   @user.valid?
-      #   expect(@user.errors.full_messages).to include([])
-      # end
+      
 
       it 'emailが空では登録できない' do
         @user.email = ''
@@ -76,11 +70,29 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include('Email is invalid')
       end
+      it 'パスワードは英数字混合ではないと登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+        @user.password = '000000'
+        @user.password_confirmation = '000000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it 'firstname_kana、surname＿kanaはカタカナでなければ登録できない' do
+        @user.firstname_kana = '漢字'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Firstname kana is invalid")
+        @user.surname_kana = '漢字'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname kana is invalid")
+      end
     end
   end
 end
 
-# マストなもの
+# メモ用、単体テストコードで最低限必要なもの
 # 1.gemfileの記述
 # 2.specのインストール
 # 3.単体テストなので、対象モデルのデータが抽出できるか確認するため、spec→モデルの中にファイルを作成し、記述
@@ -88,14 +100,8 @@ end
 # あると便利なもの
 # 5.頻出の値をまとめておくのがfactorybot
 
-# rails g rspec:model userを記述して作成,Factorybotってどこを見ているのかな？
+# 気付き
+# 英数字混合として代入してみたがダメでした。"aa000"としました
+# @user.password_confirmation =  /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
 
-# require 'rails_helper'
-# RSpec.describe User, type: :model do
-#   describe 'ユーザー新規登録' do
-#     it "nicknameが空だと登録できない" do
-#       user = FactoryBot.build(:user)
-#       user.nickname = ""  # nicknameの値を空にする
-#       user.valid?
-#       expect(user.errors.full_messages).to include("Nickname can't be blank")
-#     end
+
