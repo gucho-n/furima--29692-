@@ -160,5 +160,6 @@ end
 # 気付き
 # 英数字混合として代入してみたがダメでした。"aa000"としました
 # @user.password_confirmation =  /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+# https://gist.github.com/nashirox/38323d5b51063ede1d41
 
 
