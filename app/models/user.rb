@@ -23,4 +23,7 @@ class User < ApplicationRecord
   VALID_KANA_NAME_REGEX = /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/.freeze
   validates :surname_kana, format: { with: VALID_KANA_NAME_REGEX }
   validates :firstname_kana, format: { with: VALID_KANA_NAME_REGEX }
+
+  has_many :items
+  has_many :item_purchases 
 end

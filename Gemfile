@@ -63,3 +63,6 @@ gem 'pry-rails'
 # ↑単体テストに最低限必要なもの
 gem 'faker'
 # ↑テストの時の仮の名前
+gem 'active_hash'
+# ↑ActiveHashの導入
+
