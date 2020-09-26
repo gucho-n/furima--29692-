@@ -24,6 +24,8 @@ describe User do
         expect(@user).to be_valid
       end
     end
+    
+    
 
     context '新規登録がうまくいかないとき' do
       it 'nicknameが空だと登録できない' do
@@ -109,7 +111,37 @@ describe User do
         @user.birthday = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
-      
+      end
+
+      it 'firstnameが漢字、かな、カナでなければ登録できない' do
+        @user.firstname = "kana"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Firstname is invalid")
+      end
+      it 'surnameが漢字、かな、カナでなければ登録できない' do
+        @user.surname = "kana"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname is invalid")
+      end
+      it 'firstname_kanaがカナでなければ登録できない' do
+        @user.firstname_kana = "kana"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Firstname kana is invalid")
+      end
+      it 'firstname_kanaが漢字では登録できない' do 
+        @user.firstname_kana = "仮名"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Firstname kana is invalid")
+      end
+      it 'surname_kanaがカナでなければ登録できない' do
+        @user.surname_kana = "kana"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname kana is invalid")
+      end  
+      it 'surname_kanaがカナでなければ登録できない' do
+        @user.surname_kana = "仮名"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname kana is invalid")
       end
     end
   end

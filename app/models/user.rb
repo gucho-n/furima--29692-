@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validates :firstname, format: { with: VALID_NAME_REGEX }
 
   # 氏名用かな
-  VALID_KANA_NAME_REGEX = /\A[ァ-ヶー－]+\z/.freeze
+  VALID_KANA_NAME_REGEX = /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/.freeze
   validates :surname_kana, format: { with: VALID_KANA_NAME_REGEX }
   validates :firstname_kana, format: { with: VALID_KANA_NAME_REGEX }
 end
