@@ -1,4 +1,4 @@
-class ItemPurchase < ApplicationRecord
+class ItemPurchase <  ActiveHash::Base
   belongs_to  :user
   belongs_to  :item
   has_one :address
