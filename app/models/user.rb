@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :nickname, :birthday, :surname, :surname_kana, :firstname, :firstname_kana,presence: true
+
+  
   
   
   # emailとpasswordについてはデフォルトで「存在しないと保存できない」というバリデーションが用意されている
