@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       # 新規作成
       t.integer :shipping_charge_id, null: false
       t.string  :name, null: false
-      t.integer :origin_id, null:false
+      t.integer :address_id, null:false
       t.integer :category_id, null:false
       t.integer :condition_id, null:false
       t.integer :estimate_of_deliver_id, null:false
