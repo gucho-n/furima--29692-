@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.order('created_at DESC')
+    # @items = Item.order('created_at DESC')
   end
 
   def new
@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
 end
 
 # 自分用メモ
-# ここのnewは、formwithを使う時にモデル名をインスタンス変数で渡してあげる必要がある
+# リダイレクトについて。ここのnewは、formwithを使う時にモデル名をインスタンス変数で渡してあげる必要がある
 
 # なので、createアクションの中のcreateメソッドをいったん２等してあげる。(newでインスタンス生成、saveで保存、ここのsaveを使ってIF
 # 分で分割する)

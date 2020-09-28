@@ -4,7 +4,7 @@ describe Item do
     @item = FactoryBot.build(:item)
   end
 
-  describe 'ユーザー新規登録' do
+  describe '商品出品' do
     context '新規登録がうまくいくとき' do
       it '空欄なく入力すれば登録できる' do
         @item.image = fixture_file_upload("spec/fixtures/test_image.jpg")
@@ -79,6 +79,21 @@ describe Item do
         @item.price = 'aaa'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'カテゴリが--だと登録できない' do
+          @item.category_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include('Category must be other than 1')
+      end    
+        it '商品の状態が--だと登録できない' do
+          @item.condition_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include('Condition must be other than 1')
+      end
+      it '配送予定日が--だと登録できない' do
+          @item.estimate_of_deliver_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Estimate of deliver must be other than 1")
       end
     end
   end
