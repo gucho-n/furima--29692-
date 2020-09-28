@@ -8,6 +8,13 @@
   <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
   <%= stylesheet_link_tag 'application', media: 'all'%>
   <%= javascript_pack_tag 'application' %> 
+  
+  <%# 読み込みはここからみる %>
+  <%# <%= javascript_pack_tag 'application'  %> 
+  <%# の意味はjavascriptはどこでも読めますよという意味です
+  requireのにそのファイル名を入れるだけでOK
+  Railsとか他のフレームワーくを使うときは必ずrequireを使うようにします %>
+
  
 </head>
 
