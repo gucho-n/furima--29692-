@@ -24,8 +24,6 @@ describe User do
         expect(@user).to be_valid
       end
     end
-    
-    
 
     context '新規登録がうまくいかないとき' do
       it 'nicknameが空だと登録できない' do
@@ -33,7 +31,6 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      
 
       it 'emailが空では登録できない' do
         @user.email = ''
@@ -76,36 +73,32 @@ describe User do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
         @user.password = '000000'
         @user.password_confirmation = '000000'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'firstnameは空白だと登録できない' do
         @user.firstname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Firstname can't be blank", "Firstname is invalid")
+        expect(@user.errors.full_messages).to include("Firstname can't be blank", 'Firstname is invalid')
       end
       it 'surnameは空白だと登録できない' do
         @user.surname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Surname can't be blank", "Surname is invalid")
+        expect(@user.errors.full_messages).to include("Surname can't be blank", 'Surname is invalid')
       end
 
       it 'firstname_kanaは空白だと登録できない' do
         @user.firstname_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Firstname kana can't be blank", "Firstname kana is invalid")
-        
-      
+        expect(@user.errors.full_messages).to include("Firstname kana can't be blank", 'Firstname kana is invalid')
       end
       it 'surname_kanaは空白だと登録できない' do
-        
         @user.surname_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Surname kana is invalid")
-      
+        expect(@user.errors.full_messages).to include('Surname kana is invalid')
       end
       it '生年月日が空だと登録できない' do
         @user.birthday = ''
@@ -114,39 +107,38 @@ describe User do
       end
 
       it 'firstnameが漢字、かな、カナでなければ登録できない' do
-        @user.firstname = "kana"
+        @user.firstname = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Firstname is invalid")
+        expect(@user.errors.full_messages).to include('Firstname is invalid')
       end
       it 'surnameが漢字、かな、カナでなければ登録できない' do
-        @user.surname = "kana"
+        @user.surname = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Surname is invalid")
+        expect(@user.errors.full_messages).to include('Surname is invalid')
       end
       it 'firstname_kanaがカナでなければ登録できない' do
-        @user.firstname_kana = "kana"
+        @user.firstname_kana = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Firstname kana is invalid")
+        expect(@user.errors.full_messages).to include('Firstname kana is invalid')
       end
-      it 'firstname_kanaが漢字では登録できない' do 
-        @user.firstname_kana = "仮名"
+      it 'firstname_kanaが漢字では登録できない' do
+        @user.firstname_kana = '仮名'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Firstname kana is invalid")
+        expect(@user.errors.full_messages).to include('Firstname kana is invalid')
       end
       it 'surname_kanaがカナでなければ登録できない' do
-        @user.surname_kana = "kana"
+        @user.surname_kana = 'kana'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Surname kana is invalid")
-      end  
+        expect(@user.errors.full_messages).to include('Surname kana is invalid')
+      end
       it 'surname_kanaがカナでなければ登録できない' do
-        @user.surname_kana = "仮名"
+        @user.surname_kana = '仮名'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Surname kana is invalid")
+        expect(@user.errors.full_messages).to include('Surname kana is invalid')
       end
     end
   end
 end
-
 
 # 勉強用のためのコメントアウト
 # メモ用、単体テストコードで最低限必要なもの
@@ -161,5 +153,3 @@ end
 # 英数字混合として代入してみたがダメでした。"aa000"としました
 # @user.password_confirmation =  /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
 # https://gist.github.com/nashirox/38323d5b51063ede1d41
-
-
