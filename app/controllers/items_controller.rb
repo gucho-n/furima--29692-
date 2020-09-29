@@ -1,11 +1,20 @@
 class ItemsController < ApplicationController
   def index
-    # @items = Item.order('created_at DESC')
+    @items = Item.order('created_at DESC')
   end
+  
 
   def new
     @item = Item.new
   end
+
+  def edit
+  end
+
+  def show
+    @item = Item.find(params[:id])
+  end
+ 
 
   def create
     @item = Item.new(item_params)
@@ -55,3 +64,10 @@ end
 # （この時にcreateは、生成・保存に分割、インスタンス変数を生成して、保存時でIFぶんで分割する）
 # ③VIEWにレンダーを出す
 # https://qiita.com/nakanishi03/items/d1be27c74c98855423ab
+
+ # エラー複数のデータなのにEACHを使うと、下記のようなことが起こります
+#  Viewのなかに例えば2というIDを入力して
+  # バイプラ先生やったら問題なくできた
+
+  # 原則画面遷移する前に下記のアクションは発動してないので
+  # 画面遷移する前にインスタンス変数を生成する場合、インデックスであらかじめ生成しておく必要がある
