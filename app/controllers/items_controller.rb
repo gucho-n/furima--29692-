@@ -1,12 +1,27 @@
 class ItemsController < ApplicationController
   def index
-    # @items = Item.order('created_at DESC')
+    @items = Item.order('created_at DESC')
+    binding.pry
+    
   end
+  # 原則画面遷移する前に下記のアクションは発動してないので
+  # 画面遷移する前にインスタンス変数を生成する場合、インデックスであらかじめ生成しておく必要がある
 
   def new
     @item = Item.new
   end
 
+  def edit
+    
+  end
+  
+  def show
+    @item = Item.find(params[:id])
+    
+  end
+  # Viewのなかに例えば2というIDを入力して
+  # バイプラ先生やったら問題なくできた
+  
   def create
     @item = Item.new(item_params)
     if @item.save
