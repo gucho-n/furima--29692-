@@ -14,12 +14,11 @@ class Item < ApplicationRecord
   less_price = 300
   over_price = 9_999_999
 
-
   validates :price, numericality: { only_interger: true }
   validates :price, numericality: { greater_than_or_equal_to: less_price.to_i }
   validates :price, numericality: { less_than_or_equal_to: over_price.to_i }
 
-  validates :category_id, :condition_id, :estimate_of_deliver_id,numericality:{ other_than: 1 } 
+  validates :category_id, :condition_id, :estimate_of_deliver_id, numericality: { other_than: 1 }
   def was_attached?
     image.attached?
   end
