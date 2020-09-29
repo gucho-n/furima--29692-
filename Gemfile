@@ -63,3 +63,13 @@ gem 'pry-rails'
 # ↑単体テストに最低限必要なもの
 gem 'faker'
 # ↑テストの時の仮の名前
+gem 'active_hash'
+# ↑ActiveHashの導入
+
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+# ↑Activestrage(画像の保存に使えるgem)
+# rails active_storage:install
+# ↓
+# rails db:migrate
+

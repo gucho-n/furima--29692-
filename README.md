@@ -25,7 +25,7 @@
 | --------------| ------ | -----------------------------|
 |shipping_charge_id|integer |null:false
 | name          | string |null:false                    | 
-| origin_id     | integer|null:false                    |
+| address_id     | integer|null:false                    |
 | category_id   | integer|null:false                    |
 | condition_id  | integer|null:false                    |
 | estimate_of_deliver_id|integer|null:false             |
