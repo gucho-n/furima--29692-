@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.order('created_at DESC')
-    binding.pry
+    
+    
     
   end
   # 原則画面遷移する前に下記のアクションは発動してないので
@@ -35,6 +36,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :image, :price, :shipping_charge_id, :address_id, :category_id, :condition_id, :estimate_of_deliver_id).merge(user_id: current_user.id)
+
   end
 end
 
