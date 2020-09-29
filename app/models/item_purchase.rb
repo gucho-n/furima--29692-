@@ -1,5 +1,5 @@
 class ItemPurchase < ActiveHash::Base
   belongs_to  :user
   belongs_to  :item
-  has_one :address
+  has_one     :address
 end
