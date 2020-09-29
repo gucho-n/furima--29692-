@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @addresses = Address.all
+   
    
   end
  
