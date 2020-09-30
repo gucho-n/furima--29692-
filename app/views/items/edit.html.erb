@@ -5,7 +5,10 @@ app/assets/stylesheets/items/new.css %>
   <header class="items-sell-header">
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
+    
     <%= form_with model:@item, local: true do |f| %>
+    
+    <%= render 'shared/error_messages', model: f.object %>
     
 
 
@@ -29,6 +32,7 @@ app/assets/stylesheets/items/new.css %>
         商品名
         <span class="indispensable">必須</span>
       </div>
+      
       <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
@@ -141,7 +145,8 @@ app/assets/stylesheets/items/new.css %>
     </div>
     <%# /下部ボタン %>
   </div>
-  <% end %>
+
+   <% end %>
 
   <footer class="items-sell-footer">
     <ul class="menu">
