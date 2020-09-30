@@ -5,7 +5,8 @@ app/assets/stylesheets/items/new.css %>
   <header class="items-sell-header">
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with(model: @tweet, local: true) do |f| %>
+    <%= form_with model:@item, local: true do |f| %>
+    
 
 
     <%# 出品画像 %>
@@ -135,7 +136,7 @@ app/assets/stylesheets/items/new.css %>
     <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <%= f.submit "変更する" ,class:"sell-btn" %>
+      <%= f.submit "変更する",class:"sell-btn" %>
       <%=link_to 'もどる', "#", class:"back-btn" %>
     </div>
     <%# /下部ボタン %>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   resources :items
+
+  # patch 'items/:id' => 'items#update', as: 'item'
   
 
 end
