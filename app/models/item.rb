@@ -19,9 +19,10 @@ class Item < ApplicationRecord
   validates :price, numericality: { less_than_or_equal_to: over_price.to_i }
 
   validates :category_id, :condition_id, :estimate_of_deliver_id, numericality: { other_than: 1 }
-  def was_attached?
-    image.attached?
-  end
+  # def was_attached?
+  #   image.attached?
+  # end
+  #was attachedで、イメージがなくても更新すると消えていた
 end
 
 # 学習用メモ
