@@ -72,4 +72,4 @@ gem 'image_processing', '~> 1.2'
 # rails active_storage:install
 # ↓
 # rails db:migrate
-
+gem 'payjp'
