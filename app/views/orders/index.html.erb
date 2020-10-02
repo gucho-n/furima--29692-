@@ -33,8 +33,10 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model:@order,id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-      <%# <%= render 'shared/error_messages', model: f.object %> %>
+    <%= form_with model: @order url: item_orders_path,id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+        <%# model:@order,url:item_orders_path、このデータの渡し先は偽装モデルだったので、本当のモデルに渡すには、パスを指定してあげなくてはいけない  %>
+        <%# model: @orderはエラーメッセージ用   %>
+      <%= render 'shared/error_messages', model: f.object %>
     <%# 入力先のモデルだよな。。？ %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>

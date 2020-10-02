@@ -1,4 +1,4 @@
-class UserValidation
+class UserOrder
 
   include ActiveModel::Model
   # これがよくわからん
@@ -21,12 +21,13 @@ class UserValidation
 
    # 各のデータを保存している
    # IDを保存するために変数を入れておく(item情報は既に作成しているので、呼び出しさえすればいいんちゃう？Idが欲しい)
+  #  Itemの購入IDの生成のため
   
    def save
-    # ユーザーの情報を保存し、「user」という変数に入れている
-    user = Item.create(:number number,:exp_month exp_month,:exp_year exp_year,:cvc cvc)
+    # ユーザーの情報を保存し、「itempurchase」という変数に入れている
+    itempurchase = ItemPurchase.create(:number number,:exp_month exp_month,:exp_year exp_year,:cvc cvc)
     # クレジットカードの情報を保存
-    Credit.create(:number number,:exp_month exp_month,:exp_year exp_year,:cvc cvc)
+  
     # 住所の情報を保存
     DeliverAddress.create(:postcode postcode,:phonenuber phonenuber,:city city,:block block,:building building,:address_id address_id)
   end
