@@ -1,8 +1,9 @@
 class UserOrder
 
   include ActiveModel::Model
-  # これがよくわからん
-  attr_accessor (:number number,:exp_month exp_month,:exp_year exp_year,:cvc cvc,:postcode postcode,:phonenuber phonenuber,:city city,:block block,:building building,:address_id address_id)
+  # これがよくわからん→ストロングパラメーターみたいな
+  attr_accessor :postcode, :phonenumber, :city, :block, :building, :address_id, :user_id, :item_id
+
 
   
   # # 名前のフォーマットのバリデーションを加える
@@ -25,13 +26,11 @@ class UserOrder
   
    def save
     # ユーザーの情報を保存し、「itempurchase」という変数に入れている
-    itempurchase = ItemPurchase.create(:number number,:exp_month exp_month,:exp_year exp_year,:cvc cvc)
+    # itempurchase = ItemPurchase.create(user_id: ,item_id:)
     # クレジットカードの情報を保存
   
     # 住所の情報を保存
-    DeliverAddress.create(:postcode postcode,:phonenuber phonenuber,:city city,:block block,:building building,:address_id address_id)
-  end
-
+    DeliverAddress.create(postcode: postcode,phonenumber: phonenumber,city: city,block: block,building: building,address_id: address_id)
   end
 
 

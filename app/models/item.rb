@@ -22,7 +22,7 @@ class Item < ApplicationRecord
   # def was_attached?
   #   image.attached?
   # end
-  #was attachedで、イメージがなくても更新すると消えていた
+  # was attachedで、イメージがなくても更新すると消えていた
 end
 
 # 学習用メモ
