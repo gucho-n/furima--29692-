@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
 
   before_action :set_Price, only: [:index,:create]
+  before_action :move_to_root
 
-
-  def index
-    
+  def index 
     @order = UserOrder.new
+    
+   
+   
+   
   end
   # 価格は１つなので、findで一つ拾う。このパラムスは入力した時のパラムスではなく遷移した時に生まれるパラムス
   # 基本的にform_with運ばれたものを指定するが、これは違う
@@ -56,5 +59,23 @@ class OrdersController < ApplicationController
       currency:'jpy'                 # 通貨の種類(日本円)
     )
   end
+  def move_to_sign_in
+
+    unless user_signed_in?
+    redirect_to new_user_session_path
+    end
+    # action:を入れるとコントローラーに
+    # 入れないとページにいく
+  end
+  
+  def move_to_root
+    @item = Item.find(params[:item_id])
+    if user_signed_in? && (current_user.id == @item.user.id)
+      redirect_to root_path
+    end
+  end
+
+
+
 
 end
