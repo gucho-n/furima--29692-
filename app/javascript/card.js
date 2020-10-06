@@ -15,13 +15,14 @@ const pay = ()=> {
       exp_month: formData.get("user_order[exp_month]"),
       exp_year: `20${formData.get("user_order[exp_year]")}`, 
     };
-
+  
     //②引っ張ってきたデータでクラスを生成する
     // ③ここのデータをformDataに代入
 
     //string型でいいの？
 
     Payjp.createToken(card, (status, response) => {
+      console.log(status)
       if (status == 200) {
         const token = response.id;
         console.log(token)
@@ -29,10 +30,10 @@ const pay = ()=> {
         const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
-      document.getElementById("card-number").removeAttribute("card-number");
-      document.getElementById("card-cvc").removeAttribute("card-cvc");
-      document.getElementById("card-exp-month").removeAttribute("card-exp-month");
-      document.getElementById("card-exp-year").removeAttribute("card-exp-year");
+      document.getElementById("card-number").removeAttribute("name");
+      document.getElementById("card-cvc").removeAttribute("name");
+      document.getElementById("card-exp-month").removeAttribute("name");
+      document.getElementById("card-exp-year").removeAttribute("name");
 
       document.getElementById("charge-form").submit();
       document.getElementById("charge-form").reset();

@@ -5,10 +5,6 @@ class OrdersController < ApplicationController
 
   def index 
     @order = UserOrder.new
-    
-   
-   
-   
   end
   # 価格は１つなので、findで一つ拾う。このパラムスは入力した時のパラムスではなく遷移した時に生まれるパラムス
   # 基本的にform_with運ばれたものを指定するが、これは違う
@@ -29,26 +25,29 @@ class OrdersController < ApplicationController
   def create
    
     # //効かないのではなく、毎回indexに行っているのでは？
-    @order = UserOrder.new(order_params)
+    @order = UserOrder.new(order_params) 
+      
+    if  @order.valid?
+        @order.save
+        redirect_to root_path
+    else
+        render action: :index
+    end
     
    
-    if @order.save
-      redirect_to root_path
-    else
-      render_to 'index'
-    end
   end
 
   private
 
   def order_params
-   
-
-    params.require(:user_order).permit(:token,:postcode, :phonenumber, :city, :block, :building, :address_id).merge(user_id: current_user.id)
-
+  
+    params.require(:user_order).permit(:postcode, :phonenumber, :city, :block, :building, :address_id).merge(user_id: current_user.id,item_id: params[:item_id], token: params[:token] )
+    
+  
   end
   def set_Price
     @price = Item.find(params[:item_id])
+   
   end
 
   def pay_item
@@ -70,8 +69,9 @@ class OrdersController < ApplicationController
   
   def move_to_root
     @item = Item.find(params[:item_id])
+
     if user_signed_in? && (current_user.id == @item.user.id)
-      redirect_to root_path
+       redirect_to root_path
     end
   end
 

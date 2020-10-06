@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :item_purchases
+
+  # validates :postcode, presence: true
 end
 
 # 自分用メモ
