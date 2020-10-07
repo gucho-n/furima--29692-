@@ -9,19 +9,20 @@ class UserOrder
 
   with_options presence: true do
   #   # 氏名用
+  validates :token
  
   # 「住所」の郵便番号に関するバリデーション
   validates :postcode, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
   # 「住所」の都道府県に関するバリデーション
   validates :address_id, numericality: { other_than: 0, message: "can't be blank" }
-  # 「住所」の都市名に関するバリデーション
-  validates :city, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "can't be blank" }
-  # 「住所」の都市名に関するバリデーション なし
-
-  # 「住所」の市区町村に関するバリデーション なし
-
+  # 「住所」の市区町村に関するバリデーション 
+  validates :city
+  # 「住所」の番地に関するバリデーション 
+  validates :block
+  # 「住所」の建物名に関するバリデーション
+  
   # 「住所」の電話番号に関するバリデーション
-  validates :phonenumber, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :phonenumber, format: { with: /\A\d{11}\z/, message: 'is invalid. Include hyphen(-)' }
   end
    # 各のデータを保存している
    # IDを保存するために変数を入れておく(item情報は既に作成しているので、呼び出しさえすればいいんちゃう？Idが欲しい)
@@ -39,3 +40,11 @@ class UserOrder
   
 
 end
+
+# メモ用
+    # Q.attr_accessorの意味は？ストロングパラメーター
+      # attr_accessor :postcode, :phonenumber, :city, :block, :building, :address_id, :user_id, :item_id,:token,:item_purchase_id
+      # A.form.objectを使うキーは必ず明記する。（token）も必要
+    
+      # Q.バリデーションはどうやって入れるの？
+      # A.with_options presence: true do〜endの間にバリデーションを加える。

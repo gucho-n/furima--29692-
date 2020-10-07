@@ -17,9 +17,11 @@ class ApplicationController < ActionController::Base
 end
 
 # メモ用
-# devise内でパラメーターを使うには、許可がいる。
-# devise_parameter_sanitizerメソッドを使うことによって承認が降りる
+# Q.devise内でパラメーターを使うには、許可がいる。
+  # A.その許可のやり方がconfigure_permitted_parameters、devise_parameter_sanitizerメソッドを使うことによって承認が降りる
 # 早めに承認しておきたいので、beforeアクションがいる
-# permit(:deviseの処理名, keys: [:許可するキー])
-# このデバイスの処理名は（何に使うかということ）sign_up,sign_in,account_updateのこと
-# メソッド名は configure_permitted_parameters, if: :devise_controller?は慣習だと覚えておこう。
+
+# 大事！railsはいろいろと省略している。
+  # permit(:deviseの処理名, keys: [:許可するキー])
+  # このデバイスの処理名は（何に使うかということ）sign_up,sign_in,account_updateのこと
+
