@@ -13,12 +13,12 @@ RSpec.describe UserOrder, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @user_order.postcode = ''
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("City can't be blank")
+        expect(@user_order.errors.full_messages).to include("Postcode can't be blank")
       end
       it '都道府県が空だと保存できないこと' do
         @user_order.address_id = ''
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("City can't be blank")    
+        expect(@user_order.errors.full_messages).to include("Address can't be blank", "Address can't be blank")    
       end
       it '市町村が空だと保存できないこと' do
         @user_order.city = ''
@@ -38,6 +38,6 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
       end
 
-    end
+    
   end
 end
