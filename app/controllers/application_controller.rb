@@ -18,10 +18,9 @@ end
 
 # メモ用
 # Q.devise内でパラメーターを使うには、許可がいる。
-  # A.その許可のやり方がconfigure_permitted_parameters、devise_parameter_sanitizerメソッドを使うことによって承認が降りる
+# A.その許可のやり方がconfigure_permitted_parameters、devise_parameter_sanitizerメソッドを使うことによって承認が降りる
 # 早めに承認しておきたいので、beforeアクションがいる
 
 # 大事！railsはいろいろと省略している。
-  # permit(:deviseの処理名, keys: [:許可するキー])
-  # このデバイスの処理名は（何に使うかということ）sign_up,sign_in,account_updateのこと
-
+# permit(:deviseの処理名, keys: [:許可するキー])
+# このデバイスの処理名は（何に使うかということ）sign_up,sign_in,account_updateのこと
