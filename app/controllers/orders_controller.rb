@@ -26,13 +26,13 @@ class OrdersController < ApplicationController
   end
 
   def set_Purchase
-    @purchase = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
   end
 
   def pay_item
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']  # PAY.JPテスト秘密鍵
       Payjp::Charge.create(
-      amount: @purchase.price, # 商品の値段
+      amount: @item.price, # 商品の値段
 
       card: order_params[:token], # カードトークン
       currency: 'jpy' # 通貨の種類(日本円)
@@ -46,7 +46,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_root
-    @item = Item.find(params[:item_id])
 
     redirect_to root_path if user_signed_in? && (current_user.id == @item.user.id)
   end

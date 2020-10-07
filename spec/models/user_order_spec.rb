@@ -10,6 +10,12 @@ RSpec.describe UserOrder, type: :model do
       expect(@user_order).to be_valid
       # expect(@user).to be_valid 有効です
     end
+    it 'すべての値が正しく入力されていれば保存できること' do
+      @user_order.building = ""
+      expect(@user_order).to be_valid
+
+      # expect(@user).to be_valid 有効です
+    end
     it '郵便番号が空だと保存できないこと' do
       @user_order.postcode = ''
       @user_order.valid?
