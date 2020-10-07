@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   before_action :set_Purchase, only: [:index,:create]
   before_action :move_to_root
+  before_action :move_to_sign_in
 
   def index 
     @order = UserOrder.new
@@ -34,7 +35,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_18b8f13aedf09044e120ae95"  # PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @purchase,  # 商品の値段
       card: order_params[:token],    # カードトークン

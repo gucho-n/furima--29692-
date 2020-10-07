@@ -30,12 +30,12 @@ class UserOrder
   
    def save
     # ユーザーの情報を保存し、「itempurchase」という変数に入れている
-    item_purchase = ItemPurchase.create!(user_id: user_id ,item_id: item_id)
+    item_purchase = ItemPurchase.create(user_id: user_id ,item_id: item_id)
     
     # クレジットカードの情報を保存
   
     # 住所の情報を保存
-    DeliverAddress.create!(postcode: postcode,phonenumber: phonenumber,city: city,block: block,building: building,address_id: address_id,item_purchase_id: item_purchase.id)
+    DeliverAddress.create(postcode: postcode,phonenumber: phonenumber,city: city,block: block,building: building,address_id: address_id,item_purchase_id: item_purchase.id)
   end
   
 
