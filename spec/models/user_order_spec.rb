@@ -51,5 +51,10 @@ RSpec.describe UserOrder, type: :model do
       @user_order.valid?
       expect(@user_order.errors.full_messages).to include("Phonenumber is invalid. Include hyphen(-)")
     end
+    it "都道府県は0の時保存できない" do
+      @user_order.address_id = 0
+      @user_order.valid?
+      expect(@user_order.errors.full_messages).to include("Address can't be blank")
+    end
   end
 end
