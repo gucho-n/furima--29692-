@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_Purchase, only: [:index, :create]
   before_action :move_to_root
   before_action :move_to_sign_in
+  before_action :move_to_index
 
   def index
     @order = UserOrder.new
@@ -48,6 +49,11 @@ class OrdersController < ApplicationController
   def move_to_root
 
     redirect_to root_path if user_signed_in? && (current_user.id == @item.user.id)
+  end
+  def move_to_index
+    if @item.item_purchase != nil
+      redirect_to root_path
+    end
   end
 end
 
